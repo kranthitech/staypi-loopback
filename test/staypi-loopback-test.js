@@ -1,29 +1,35 @@
 var staypiRead = require('staypi-read-model')
 var expect = require('chai').expect
 var path = require("path")
-
-var test_model_path = path.join(process.cwd(), 'staypi-test-data/test_yeloni')
+var _ = require('lodash')
+var test_model_path = path.join(process.cwd(), 'staypi-test-data/yeloni/app/models')
 var staypiLoopBackAttributes = require('../staypi-loopback-attributes')
 var staypiLoopBack = require('../staypi-loopback')
+var fs = require('fs');
 
 describe('Staypi Loopback', function() {
     var staypi_models = null,
         loopback_models = null,
         loopback_attributes = null
 
-    before(function(done) {
-        staypiRead.loadModelsFromFolder(test_model_path)
-            .then(function(models) {
-                console.log('Models Read')
-                staypi_models = models
-                done()
-            }, function() {
-                console.log('Unable to read models')
-            })
-    })
-
     describe('Create Attributes', function() {
-        loopback_attributes = staypiLoopBackAttributes(staypi_models)
+
+        before(function(done) {
+            staypiRead.loadModelsFromFolder(test_model_path)
+                .then(function(models) {
+                    console.log('Models Successfully Read from- '+test_model_path+'\n')
+
+                    staypi_models = models
+                    loopback_attributes = staypiLoopBackAttributes(staypi_models)
+                    fs.writeFileSync('test/loopback_attributes.json', JSON.stringify(loopback_attributes));
+
+                    done()
+                }, function() {
+                    console.log('Unable to read models')
+                })
+        })
+
+
 
         it('- WebPage should have website_id attribute as required', function(done) {
             expect(loopback_attributes).to.have.deep.property('WebPage.website_id.required', true)
@@ -44,7 +50,7 @@ describe('Staypi Loopback', function() {
             expect(loopback_attributes).to.have.deep.property('Visit.referrer_domain_id')
             expect(loopback_attributes).to.not.have.deep.property('Visit.referrer_domain_id.required', true)
         })
-        
+
     })
 
 })

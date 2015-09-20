@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/kranthitech/staypi-loopback#readme",
   "dependencies": {
+    "lodash": "^3.10.1",
     "staypi-read-model": "git+https://github.com/kranthitech/staypi-read-model.git"
   }
 }
