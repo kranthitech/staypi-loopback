@@ -1,0 +1,29 @@
+{
+  "name": "staypi-loopback",
+  "version": "0.1.0",
+  "description": "Creates Loopback models from staypi models",
+  "main": "staypi-loopback.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kranthitech/staypi-loopback.git"
+  },
+  "keywords": [
+    "staypi",
+    "loopback",
+    "api",
+    "generation",
+    "nodejs"
+  ],
+  "author": "kranthitech@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kranthitech/staypi-loopback/issues"
+  },
+  "homepage": "https://github.com/kranthitech/staypi-loopback#readme",
+  "dependencies": {
+    "staypi-read-model": "git+https://github.com/kranthitech/staypi-read-model.git"
+  }
+}
